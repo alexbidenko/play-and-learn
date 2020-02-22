@@ -17,8 +17,8 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::post('l', 'PassportController@login');
-Route::post('r', 'PassportController@register');
+Route::post('sign-in', 'PassportController@login');
+Route::post('sign-up', 'PassportController@register');
 
 //Route::middleware('auth:api')->group(function () {
 //
