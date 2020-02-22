@@ -38,8 +38,10 @@ class PassportController extends Controller
         ];
 
         if (auth()->attempt($credentials)) {
+            $token = auth()->user()->createToken('PlayAndLearn')->accessToken;
+
             return response()->json([
-                'token' => auth()->user()->token(),
+                'token' => $token,
                 'user' => auth()->user()
             ], 200);
         } else {
