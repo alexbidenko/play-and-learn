@@ -24,7 +24,10 @@ class PassportController extends Controller
 
         $token = $user->createToken('PlayAndLearn')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        return response()->json([
+            'token' => $token,
+            'user' => $user
+        ], 200);
     }
 
     public function login(Request $request)
