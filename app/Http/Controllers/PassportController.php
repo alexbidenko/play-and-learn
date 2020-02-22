@@ -39,7 +39,7 @@ class PassportController extends Controller
 
         if (auth()->attempt($credentials)) {
             return response()->json([
-                'token' => auth()->user()->getRememberToken(),
+                'token' => auth()->user()->token(),
                 'user' => auth()->user()
             ], 200);
         } else {
