@@ -10,10 +10,10 @@ class PassportController extends Controller
 {
     public function register(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|min:3',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:8',
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
         ]);
 
         $user = User::create([
