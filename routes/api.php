@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 Route::post('sign-in', 'PassportController@login');
 Route::post('sign-up', 'PassportController@register');
 
-//Route::middleware('auth:api')->group(function () {
-//
-//    Route::get('users', 'PassportController@details');
-//});
+Route::middleware('auth:api')->group(function () {
+
+    Route::get('user', 'PassportController@details');
+});
