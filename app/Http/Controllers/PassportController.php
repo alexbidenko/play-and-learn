@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\User;
+use Lcobucci\JWT\Parser;
 
 class PassportController extends Controller
 {
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password)
         ]);
 
         $token = $user->createToken('PlayAndLearn')->accessToken;
@@ -35,7 +35,7 @@ class PassportController extends Controller
         ];
 
         if (auth()->attempt($credentials)) {
-            $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+            $token = auth()->user()->createToken('PlayAndLearn')->accessToken;
             return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);
@@ -45,5 +45,14 @@ class PassportController extends Controller
     public function details()
     {
         return response()->json(['user' => auth()->user()], 200);
+    }
+
+    public function logout(Request $request)
+    {
+        $value = $request->bearerToken();
+        $id = (new Parser())->parse($value)->getHeader('jti');
+        $token = $request->user()->tokens->find($id);
+        $token->revoke();
+        return response('You have been successfully logged out!', 200);
     }
 }

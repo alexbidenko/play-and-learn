@@ -17,10 +17,10 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::post('logins', 'PassportController@login');
-Route::post('registers', 'PassportController@register');
+Route::post('l', 'PassportController@login');
+Route::post('r', 'PassportController@register');
 
-Route::middleware('auth:api')->group(function () {
-
-    Route::get('users', 'PassportController@details');
-});
+//Route::middleware('auth:api')->group(function () {
+//
+//    Route::get('users', 'PassportController@details');
+//});
