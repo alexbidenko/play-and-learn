@@ -35,8 +35,7 @@ class PassportController extends Controller
         ];
 
         if (auth()->attempt($credentials)) {
-            $token = auth()->user()->createToken('PlayAndLearn')->accessToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json(['user' => auth()->user()], 200);
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
