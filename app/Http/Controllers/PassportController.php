@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PassportController extends Controller
 {
-    public function register(Request $request)
+    public function registers(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -27,7 +27,7 @@ class PassportController extends Controller
         return response()->json(['token' => $token], 200);
     }
 
-    public function login(Request $request)
+    public function logins(Request $request)
     {
         $credentials = [
             'email' => $request->email,
@@ -42,7 +42,7 @@ class PassportController extends Controller
         }
     }
 
-    public function details()
+    public function detailss()
     {
         return response()->json(['user' => auth()->user()], 200);
     }
