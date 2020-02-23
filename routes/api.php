@@ -21,6 +21,7 @@ Route::get('subjects', 'RedactionController@subjects');
 Route::get('levels', 'RedactionController@levels');
 Route::get('tasks', 'RedactionController@tasks');
 
+Route::get('subjects-by-examination/{examinationId}', 'GameController@subjectsByExamination');
 Route::get('levels-by-subject/{subjectId}', 'GameController@levelsBySubject');
 
 Route::middleware('auth:api')->group(function () {
