@@ -15,6 +15,7 @@ use Illuminate\Validation\Rule;
 
 class RedactionController extends Controller
 {
+
     function examinations() {
         return response()->json(Examination::all(), 200);
     }
@@ -73,7 +74,7 @@ class RedactionController extends Controller
         $request->validate([
             'subject_id' => ['required', 'numeric'],
             'number' => ['required', 'numeric',
-                Rule::unique('users')->where(function (Builder $query) use ($request) {
+                Rule::unique('levels')->where(function (Builder $query) use ($request) {
                 return $query->where('subject_id', $request->subject_id);
             })],
             'title' => ['required', 'string']
@@ -143,7 +144,7 @@ class RedactionController extends Controller
         $validator = Validator::make($request->all(), [
             'subject_id' => ['numeric'],
             'number' => ['numeric',
-                Rule::unique('users')->where(function (Builder $query) use ($request) {
+                Rule::unique('levels')->where(function (Builder $query) use ($request) {
                     return $query->where('subject_id', $request->subject_id);
                 })],
             'title' => ['string']

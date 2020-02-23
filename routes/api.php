@@ -20,7 +20,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('user', 'PassportController@details');
 
-    Route::get('examinations', 'PassportController@examinations');
+    Route::get('examinations', 'RedactionController@examinations');
     Route::get('subjects', 'RedactionController@subjects');
     Route::get('levels', 'RedactionController@levels');
     Route::get('tasks', 'RedactionController@tasks');
