@@ -204,6 +204,12 @@ class RedactionController extends Controller
     }
 
     function deleteTask($id) {
+        $oldFile = Task::whereId($id)->value('image');
+
+
+        if($oldFile && Storage::disk('public')->exists('tasks/'.$oldFile))
+            Storage::disk('public')->delete('tasks/'.$oldFile);
+
         return Task::whereId($id)->forceDelete();
     }
 }
