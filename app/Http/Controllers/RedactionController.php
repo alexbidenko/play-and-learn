@@ -162,7 +162,7 @@ class RedactionController extends Controller
             'title' => ['string'],
             'text' => ['string'],
             'answer' => ['string'],
-            'image' => ['image', 'mimes:jpeg,bmp,png'],
+            'image' => ['sometimes', 'sometimes', 'image', 'mimes:jpeg,bmp,png'],
         ]);
         $validator->validate();
 
@@ -185,6 +185,8 @@ class RedactionController extends Controller
             $data['image'] = $filepath;
         else
             unset($data['image']);
+
+        return response()->json($data);
 
         $task = Task::whereId($id)->update($data);
 
