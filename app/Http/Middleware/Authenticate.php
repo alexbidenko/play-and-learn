@@ -15,6 +15,6 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        return response()->setStatusCode(Response::HTTP_UNAUTHORIZED);
+        return response()->make('Unauthorized request', Response::HTTP_UNAUTHORIZED);
     }
 }
