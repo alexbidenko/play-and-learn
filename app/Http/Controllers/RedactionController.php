@@ -180,8 +180,6 @@ class RedactionController extends Controller
         else
             unset($validated['image']);
 
-        return $validated;
-
         $task = Task::whereId($id)->update($validated);
 
         return response()->json($task);
