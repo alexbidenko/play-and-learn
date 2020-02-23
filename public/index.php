@@ -2,7 +2,9 @@
 
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Methods: POST, GET, PUT, DELETE, PATCH, OPTIONS');
-header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, X-Token-Auth, Authorization');
+header("Access-Control-Max-Age", "3600");
+header("Access-Control-Allow-Credentials", "true");
 
 /**
  * Laravel - A PHP Framework For Web Artisans

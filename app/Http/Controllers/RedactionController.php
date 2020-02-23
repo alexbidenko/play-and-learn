@@ -16,19 +16,19 @@ use Illuminate\Validation\Rule;
 class RedactionController extends Controller
 {
     function examinations() {
-        return response()->json([]);
+        return response()->json(Examination::all(), 200);
     }
 
     function subjects() {
-        return response()->json(Subject::all());
+        return response()->json(Subject::all(), 200);
     }
 
     function levels() {
-        return response()->json(Level::all());
+        return response()->json(Level::all(), 200);
     }
 
     function tasks() {
-        return response()->json(Task::all());
+        return response()->json(Task::all(), 200);
     }
 
     function subjectsByExamination($examinationId) {
