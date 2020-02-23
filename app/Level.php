@@ -8,10 +8,10 @@ class Level extends Model
 {
 
     protected $fillable = [
-        'title',
+        'title', 'number', 'subject_id'
     ];
 
     protected $table = 'levels';
     protected $primaryKey = 'id';
-    protected $timestamps = false;
+    public $timestamps = false;
 }

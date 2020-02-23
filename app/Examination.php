@@ -13,5 +13,5 @@ class Examination extends Model
 
     protected $table = 'examinations';
     protected $primaryKey = 'id';
-    protected $timestamps = false;
+    public $timestamps = false;
 }

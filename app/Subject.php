@@ -8,10 +8,10 @@ class Subject extends Model
 {
 
     protected $fillable = [
-        'title',
+        'title', 'examination_id'
     ];
 
     protected $table = 'subjects';
     protected $primaryKey = 'id';
-    protected $timestamps = false;
+    public $timestamps = false;
 }

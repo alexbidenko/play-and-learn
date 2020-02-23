@@ -8,10 +8,10 @@ class Task extends Model
 {
 
     protected $fillable = [
-        'title',
+        'title', 'text', 'level_id', 'image'
     ];
 
     protected $table = 'tasks';
     protected $primaryKey = 'id';
-    protected $timestamps = false;
+    public $timestamps = false;
 }
