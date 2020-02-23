@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Examination;
 use Illuminate\Http\Request;
 use App\User;
 use Lcobucci\JWT\Parser;
@@ -61,5 +62,8 @@ class PassportController extends Controller
         $token = $request->user()->tokens->find($id);
         $token->revoke();
         return response('You have been successfully logged out!', 200);
+    }
+    function examinations() {
+        return response()->json(Examination::all(), 200);
     }
 }
