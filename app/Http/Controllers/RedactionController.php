@@ -16,7 +16,7 @@ use Illuminate\Validation\Rule;
 class RedactionController extends Controller
 {
     function examinations() {
-        return response()->json(Examination::all());
+        return response()->json([]);
     }
 
     function subjects() {
