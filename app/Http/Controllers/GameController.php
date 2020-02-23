@@ -9,6 +9,6 @@ class GameController extends Controller
 {
 
     function levelsBySubject($subjectId, Request $request) {
-        return Level::with('tasks')->whereSubjectId($subjectId)->all();
+        return Level::with('tasks')->whereSubjectId($subjectId)->get();
     }
 }
