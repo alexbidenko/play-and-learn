@@ -107,7 +107,7 @@ class RedactionController extends Controller
         }
 
         $task = Task::create([
-            'subject_id' => $request->subject_id,
+            'level_id' => $request->level_id,
             'title' => $request->title,
             'text' => $request->text,
             'answer' => $request->answer,
