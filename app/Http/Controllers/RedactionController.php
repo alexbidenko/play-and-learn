@@ -122,7 +122,7 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $examination = Examination::find($id)->fill($validated)->save();
+        $examination = Examination::find($id)->update($validated);
 
         return response()->json($examination);
     }
@@ -133,7 +133,7 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $subject = Subject::find($id)->fill($validated)->save();
+        $subject = Subject::find($id)->update($validated);
 
         return response()->json($subject);
     }
@@ -148,7 +148,7 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $level = Level::find($id)->fill($validated)->save();
+        $level = Level::find($id)->update($validated);
 
         return response()->json($level);
     }
@@ -180,7 +180,7 @@ class RedactionController extends Controller
         else
             unset($validated['image']);
 
-        $task = Task::find($id)->fill($validated)->save();
+        $task = Task::find($id)->update($validated);
 
         return response()->json($task);
     }
