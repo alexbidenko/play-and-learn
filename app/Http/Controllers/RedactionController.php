@@ -186,7 +186,7 @@ class RedactionController extends Controller
         else
             unset($data['image']);
 
-        return response()->json($data);
+        return response()->json($request->all());
 
         $task = Task::whereId($id)->update($data);
 
