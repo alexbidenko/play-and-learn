@@ -30,10 +30,10 @@ Route::middleware('auth:api')->group(function () {
     Route::post('levels', 'RedactionController@addLevel');
     Route::post('tasks', 'RedactionController@addTask');
 
-    Route::patch('examinations/{id}', 'RedactionController@updateExamination');
-    Route::patch('subjects/{id}', 'RedactionController@updateSubject');
-    Route::patch('levels/{id}', 'RedactionController@updateLevel');
-    Route::patch('tasks/{id}', 'RedactionController@updateTask');
+    Route::post('examinations/{id}', 'RedactionController@updateExamination');
+    Route::post('subjects/{id}', 'RedactionController@updateSubject');
+    Route::post('levels/{id}', 'RedactionController@updateLevel');
+    Route::post('tasks/{id}', 'RedactionController@updateTask');
 
     Route::delete('examinations/{id}', 'RedactionController@deleteExamination');
     Route::delete('subjects/{id}', 'RedactionController@deleteSubject');
