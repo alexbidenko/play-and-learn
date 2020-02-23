@@ -95,7 +95,7 @@ class RedactionController extends Controller
             'title' => ['required', 'string'],
             'text' => ['required', 'string'],
             'answer' => ['required', 'string'],
-            'image' => ['image', 'mimes:jpeg,bmp,png'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,bmp,png'],
         ]);
 
         $filepath = '';
