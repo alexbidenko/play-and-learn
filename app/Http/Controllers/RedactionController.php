@@ -175,6 +175,9 @@ class RedactionController extends Controller
                 Storage::disk('public')->delete('tasks/'.$oldFile);
         }
 
+
+        return response()->json([$validated, $request]);
+
         if($filepath)
             $validated['image'] = $filepath;
         else
