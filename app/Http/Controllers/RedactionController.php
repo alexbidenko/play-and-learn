@@ -118,30 +118,28 @@ class RedactionController extends Controller
     }
 
     function updateExamination($id, Request $request) {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'title' => ['string']
         ]);
-        $validator->validate();
 
-        $examination = Examination::whereId($id)->update($validator->validated());
+        $examination = Examination::whereId($id)->update($validated);
 
         return response()->json($examination);
     }
 
     function updateSubject($id, Request $request) {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'examination_id' => ['numeric'],
             'title' => ['string']
         ]);
-        $validator->validate();
 
-        $subject = Subject::whereId($id)->update($validator->validated());
+        $subject = Subject::whereId($id)->update($validated);
 
         return response()->json($subject);
     }
 
     function updateLevel($id, Request $request) {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'subject_id' => ['numeric'],
             'number' => ['numeric',
                 Rule::unique('levels')->where(function (Builder $query) use ($request) {
@@ -149,22 +147,20 @@ class RedactionController extends Controller
                 })],
             'title' => ['string']
         ]);
-        $validator->validate();
 
-        $level = Level::whereId($id)->update($validator->validated());
+        $level = Level::whereId($id)->update($validated);
 
         return response()->json($level);
     }
 
     function updateTask($id, Request $request) {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'level_id' => ['numeric'],
             'title' => ['string'],
             'text' => ['string'],
             'answer' => ['string'],
             'image' => ['sometimes', 'sometimes', 'image', 'mimes:jpeg,bmp,png'],
         ]);
-        $validator->validate();
 
         $filepath = '';
 
@@ -179,16 +175,12 @@ class RedactionController extends Controller
                 Storage::disk('public')->delete('tasks/'.$oldFile);
         }
 
-        $data = $validator->validated();
-
         if($filepath)
-            $data['image'] = $filepath;
+            $validated['image'] = $filepath;
         else
-            unset($data['image']);
+            unset($validated['image']);
 
-        return response()->json($request->all());
-
-        $task = Task::whereId($id)->update($data);
+        $task = Task::whereId($id)->update($validated);
 
         return response()->json($task);
     }
