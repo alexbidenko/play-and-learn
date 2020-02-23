@@ -122,7 +122,7 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $examination = Examination::whereId($id)->update($validated);
+        $examination = Examination::whereId($id)->updateOrCreate($validated);
 
         return response()->json($examination);
     }
@@ -133,7 +133,7 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $subject = Subject::whereId($id)->update($validated);
+        $subject = Subject::whereId($id)->updateOrCreate($validated);
 
         return response()->json($subject);
     }
@@ -148,7 +148,7 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $level = Level::whereId($id)->update($validated);
+        $level = Level::whereId($id)->updateOrCreate($validated);
 
         return response()->json($level);
     }
@@ -180,7 +180,7 @@ class RedactionController extends Controller
         else
             unset($validated['image']);
 
-        $task = Task::whereId($id)->update($validated);
+        $task = Task::whereId($id)->updateOrCreate($validated);
 
         return response()->json($task);
     }
