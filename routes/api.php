@@ -16,14 +16,16 @@ use Illuminate\Http\Request;
 Route::post('sign-in', 'PassportController@login');
 Route::post('sign-up', 'PassportController@register');
 
+Route::get('examinations', 'RedactionController@examinations');
+Route::get('subjects', 'RedactionController@subjects');
+Route::get('levels', 'RedactionController@levels');
+Route::get('tasks', 'RedactionController@tasks');
+
+Route::get('levels-by-subject/{subjectId}', 'GameController@levelsBySubject');
+
 Route::middleware('auth:api')->group(function () {
 
     Route::get('user', 'PassportController@details');
-
-    Route::get('examinations', 'RedactionController@examinations');
-    Route::get('subjects', 'RedactionController@subjects');
-    Route::get('levels', 'RedactionController@levels');
-    Route::get('tasks', 'RedactionController@tasks');
 
     Route::post('examinations', 'RedactionController@addExamination');
     Route::post('subjects', 'RedactionController@addSubject');

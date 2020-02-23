@@ -14,4 +14,8 @@ class Level extends Model
     protected $table = 'levels';
     protected $primaryKey = 'id';
     public $timestamps = false;
+
+    public function tasks() {
+        return $this->hasMany('App/Task');
+    }
 }
