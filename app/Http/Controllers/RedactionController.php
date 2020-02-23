@@ -122,9 +122,9 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $examination = Examination::find($id)->update($validated);
+        Examination::findOrFail($id)->update($validated);
 
-        return response()->json($examination);
+        return response()->json(Examination::find($id));
     }
 
     function updateSubject($id, Request $request) {
@@ -133,9 +133,9 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $subject = Subject::find($id)->update($validated);
+        Subject::findOrFail($id)->update($validated);
 
-        return response()->json($subject);
+        return response()->json(Subject::find($id));
     }
 
     function updateLevel($id, Request $request) {
@@ -148,9 +148,9 @@ class RedactionController extends Controller
             'title' => ['string']
         ]);
 
-        $level = Level::find($id)->update($validated);
+        Level::findOrFail($id)->update($validated);
 
-        return response()->json($level);
+        return response()->json(Level::find($id));
     }
 
     function updateTask($id, Request $request) {
@@ -180,9 +180,9 @@ class RedactionController extends Controller
         else
             unset($validated['image']);
 
-        $task = Task::find($id)->update($validated);
+        Task::findOrFail($id)->update($validated);
 
-        return response()->json($task);
+        return response()->json(Task::find($id));
     }
 
     function deleteExamination($id) {
