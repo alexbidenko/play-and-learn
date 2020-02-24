@@ -92,9 +92,9 @@ class RedactionController extends Controller
     function addTask(Request $request) {
         $request->validate([
             'level_id' => ['required', 'numeric'],
-            'title' => ['required', 'string'],
-            'text' => ['required', 'string'],
-            'answer' => ['required', 'string'],
+            'title' => ['string'],
+            'text' => ['string'],
+            'answer' => ['string'],
             'image' => ['sometimes', 'sometimes', 'image', 'mimes:jpeg,bmp,png'],
         ]);
 
