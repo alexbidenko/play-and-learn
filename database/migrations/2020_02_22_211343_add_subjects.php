@@ -35,7 +35,7 @@ class AddSubjects extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('level_id');
             $table->string('title')->nullable();
-            $table->string('text')->nullable();
+            $table->text('text')->nullable();
             $table->string('image')->nullable();
             $table->string('answer')->nullable();
         });

@@ -9,7 +9,6 @@ use App\Task;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -93,25 +92,37 @@ class RedactionController extends Controller
         $request->validate([
             'level_id' => ['required', 'numeric'],
             'title' => ['string'],
-            'text' => ['string'],
             'answer' => ['string'],
+            'text' => ['string'],
             'image' => ['sometimes', 'sometimes', 'image', 'mimes:jpeg,bmp,png'],
+            'solution_text' => ['string'],
+            'solution_image' => ['sometimes', 'sometimes', 'image', 'mimes:jpeg,bmp,png'],
         ]);
 
-        $filepath = '';
+        $imageFilepath = '';
 
         if($request->file('image')) {
-            $filepath = ''.time().'_'.Str::random(8).'.'.$request->file('image')->getClientOriginalExtension();
+            $imageFilepath = ''.time().'_'.Str::random(8).'.'.$request->file('image')->getClientOriginalExtension();
 
-            $request->file('image')->storeAs('tasks', $filepath, 'public');
+            $request->file('image')->storeAs('tasks', $imageFilepath, 'public');
+        }
+
+        $solutionFilepath = '';
+
+        if($request->file('solution_image')) {
+            $solutionFilepath = ''.time().'_'.Str::random(8).'.'.$request->file('solution_image')->getClientOriginalExtension();
+
+            $request->file('solution_image')->storeAs('tasks', $solutionFilepath, 'public');
         }
 
         $task = Task::create([
             'level_id' => $request->level_id,
             'title' => $request->title,
-            'text' => $request->text,
             'answer' => $request->answer,
-            'image' => $filepath
+            'text' => $request->text,
+            'image' => $imageFilepath,
+            'solution_text' => $request->solution_text,
+            'solution_image' => $solutionFilepath
         ]);
 
         return response()->json($task, 201);
@@ -160,25 +171,45 @@ class RedactionController extends Controller
             'text' => ['string'],
             'answer' => ['string'],
             'image' => ['sometimes', 'sometimes', 'image', 'mimes:jpeg,bmp,png'],
+            'solution_text' => ['string'],
+            'solution_image' => ['sometimes', 'sometimes', 'image', 'mimes:jpeg,bmp,png'],
         ]);
 
-        $filepath = '';
+        $imageFilepath = '';
 
         if($request->file('image')) {
-            $filepath = ''.time().'_'.Str::random(8).'.'.$request->file('image')->getClientOriginalExtension();
+            $imageFilepath = ''.time().'_'.Str::random(8).'.'.$request->file('image')->getClientOriginalExtension();
 
-            $request->file('image')->storeAs('tasks', $filepath, 'public');
+            $request->file('image')->storeAs('tasks', $imageFilepath, 'public');
 
-            $oldFile = Task::whereId($id)->value('image');
+            $oldFileImage = Task::whereId($id)->value('image');
 
-            if($oldFile && Storage::disk('public')->exists('tasks/'.$oldFile))
-                Storage::disk('public')->delete('tasks/'.$oldFile);
+            if($oldFileImage && Storage::disk('public')->exists('tasks/'.$oldFileImage))
+                Storage::disk('public')->delete('tasks/'.$oldFileImage);
         }
 
-        if($filepath)
-            $validated['image'] = $filepath;
+        $solutionFilepath = '';
+
+        if($request->file('image')) {
+            $solutionFilepath = ''.time().'_'.Str::random(8).'.'.$request->file('solution_image')->getClientOriginalExtension();
+
+            $request->file('solution_image')->storeAs('tasks', $solutionFilepath, 'public');
+
+            $oldFileSolution = Task::whereId($id)->value('solution_image');
+
+            if($oldFileSolution && Storage::disk('public')->exists('tasks/'.$oldFileSolution))
+                Storage::disk('public')->delete('tasks/'.$oldFileSolution);
+        }
+
+        if($imageFilepath)
+            $validated['image'] = $imageFilepath;
         else
             unset($validated['image']);
+
+        if($solutionFilepath)
+            $validated['solution_image'] = $solutionFilepath;
+        else
+            unset($validated['solution_image']);
 
         Task::findOrFail($id)->update($validated);
 
@@ -198,11 +229,15 @@ class RedactionController extends Controller
     }
 
     function deleteTask($id) {
-        $oldFile = Task::whereId($id)->value('image');
+        $task = Task::whereId($id)->first();
+        $oldFileImage = $task->image;
+        $oldFileSolution = $task->solution_image;
 
+        if($oldFileImage && Storage::disk('public')->exists('tasks/'.$oldFileImage))
+            Storage::disk('public')->delete('tasks/'.$oldFileImage);
 
-        if($oldFile && Storage::disk('public')->exists('tasks/'.$oldFile))
-            Storage::disk('public')->delete('tasks/'.$oldFile);
+        if($oldFileSolution && Storage::disk('public')->exists('tasks/'.$oldFileSolution))
+            Storage::disk('public')->delete('tasks/'.$oldFileSolution);
 
         return Task::whereId($id)->forceDelete();
     }

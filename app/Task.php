@@ -8,7 +8,7 @@ class Task extends Model
 {
 
     protected $fillable = [
-        'title', 'text', 'level_id', 'image', 'answer'
+        'title', 'level_id', 'answer', 'text', 'image', 'solution_text', 'solution_image'
     ];
 
     protected $table = 'tasks';
