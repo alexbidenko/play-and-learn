@@ -39,8 +39,24 @@ class RedactionController extends Controller
         return Level::whereSubjectId($subjectId)->get();
     }
 
+    function levelsByExamination($examinationId) {
+        return Level::whereIn('subject_id', Subject::whereExaminationId($examinationId)->pluck('id'))->get();
+    }
+
     function tasksByLevel($levelId) {
         return Task::whereLevelId($levelId)->get();
+    }
+
+    function tasksBySubject($subjectId) {
+        return Task::whereIn('level_id', Level::whereSubjectId($subjectId)->pluck('id'))->get();
+    }
+
+    function tasksByExamination($examinationId) {
+        return Task::whereIn('level_id',
+            Level::whereIn('subject_id',
+                Subject::whereExaminationId($examinationId)->pluck('id')
+            )->pluck('id')
+        )->get();
     }
 
     function addExamination(Request $request) {
