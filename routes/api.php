@@ -21,13 +21,16 @@ Route::get('subjects', 'RedactionController@subjects');
 Route::get('levels', 'RedactionController@levels');
 Route::get('tasks', 'RedactionController@tasks');
 
-Route::get('subjects-by-examination/{examinationId}', 'GameController@subjectsByExamination');
-Route::get('levels-by-subject/{subjectId}', 'GameController@levelsBySubject');
-Route::get('tasks-by-level/{levelId}', 'GameController@tasksByLevel');
+Route::get('game/subjects-by-examination/{examinationId}', 'GameController@subjectsByExamination');
+Route::get('game/levels-by-subject/{subjectId}', 'GameController@levelsBySubject');
 
-Route::get('levels-by-examination/{examinationId}', 'GameController@levelsByExamination');
-Route::get('tasks-by-subject/{subjectId}', 'GameController@tasksBySubject');
-Route::get('tasks-by-examination/{examinationId}', 'GameController@tasksByExamination');
+Route::get('subjects-by-examination/{examinationId}', 'RedactionController@subjectsByExamination');
+Route::get('levels-by-subject/{subjectId}', 'RedactionController@levelsBySubject');
+Route::get('tasks-by-level/{levelId}', 'RedactionController@tasksByLevel');
+
+Route::get('levels-by-examination/{examinationId}', 'RedactionController@levelsByExamination');
+Route::get('tasks-by-subject/{subjectId}', 'RedactionController@tasksBySubject');
+Route::get('tasks-by-examination/{examinationId}', 'RedactionController@tasksByExamination');
 
 Route::middleware('auth:api')->group(function () {
 
