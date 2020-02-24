@@ -11,6 +11,12 @@ class Level extends Model
         'title', 'number', 'subject_id'
     ];
 
+    protected $casts = [
+        'id' => 'integer',
+        'subject_id' => 'integer',
+        'number' => 'integer',
+    ];
+
     protected $table = 'levels';
     protected $primaryKey = 'id';
     public $timestamps = false;

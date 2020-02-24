@@ -11,6 +11,10 @@ class Examination extends Model
         'title',
     ];
 
+    protected $casts = [
+        'id' => 'integer'
+    ];
+
     protected $table = 'examinations';
     protected $primaryKey = 'id';
     public $timestamps = false;

@@ -11,6 +11,11 @@ class Task extends Model
         'title', 'level_id', 'answer', 'text', 'image', 'solution_text', 'solution_image'
     ];
 
+    protected $casts = [
+        'id' => 'integer',
+        'level_id' => 'integer',
+    ];
+
     protected $table = 'tasks';
     protected $primaryKey = 'id';
     public $timestamps = false;

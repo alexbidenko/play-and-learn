@@ -11,6 +11,11 @@ class Subject extends Model
         'title', 'examination_id'
     ];
 
+    protected $casts = [
+        'id' => 'integer',
+        'examination_id' => 'integer',
+    ];
+
     protected $table = 'subjects';
     protected $primaryKey = 'id';
     public $timestamps = false;
