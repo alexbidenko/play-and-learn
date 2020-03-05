@@ -50,5 +50,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('subjects/{id}', 'RedactionController@deleteSubject');
     Route::delete('levels/{id}', 'RedactionController@deleteLevel');
     Route::delete('tasks/{id}', 'RedactionController@deleteTask');
+
+    Route::post('statistic/results', 'StatisticController@addResults');
 });
 

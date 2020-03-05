@@ -514,6 +514,7 @@ class ComposerStaticInit0f1f67aa681f003a218a87528d73c6d8
         'App\\Http\\Controllers\\GameController' => __DIR__ . '/../..' . '/app/Http/Controllers/GameController.php',
         'App\\Http\\Controllers\\PassportController' => __DIR__ . '/../..' . '/app/Http/Controllers/PassportController.php',
         'App\\Http\\Controllers\\RedactionController' => __DIR__ . '/../..' . '/app/Http/Controllers/RedactionController.php',
+        'App\\Http\\Controllers\\StatisticController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatisticController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
