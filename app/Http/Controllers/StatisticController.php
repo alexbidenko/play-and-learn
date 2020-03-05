@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Result;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -21,5 +22,9 @@ class StatisticController extends Controller
             Result::create($result);
         }
         return response()->setStatusCode(Response::HTTP_CREATED);
+    }
+
+    function getUsersList() {
+        return User::all();
     }
 }

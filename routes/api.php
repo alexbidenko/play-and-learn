@@ -52,5 +52,6 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('tasks/{id}', 'RedactionController@deleteTask');
 
     Route::post('statistic/results', 'StatisticController@addResults');
+    Route::get('statistic/users', 'StatisticController@getUsersList');
 });
 
