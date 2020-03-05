@@ -21,7 +21,7 @@ class StatisticController extends Controller
             $result['user_id'] = $request->user()->id;
             Result::create($result);
         }
-        return response()->setStatusCode(Response::HTTP_CREATED);
+        return response('', Response::HTTP_CREATED);
     }
 
     function getUsersList() {
