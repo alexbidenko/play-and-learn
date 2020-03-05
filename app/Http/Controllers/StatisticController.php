@@ -15,10 +15,11 @@ class StatisticController extends Controller
             '*.success' => ['required', 'string'],
             '*.time' => ['required', 'numeric'],
             '*.timestamp' => ['required', 'numeric'],
+            '*.answer' => ['required', 'string'],
         ]);
         $requestBody = $request->all();
         foreach ($requestBody as $result) {
-            $result['user_id'] = $request->user();
+            $result['user_id'] = $request->user()->id;
             Result::create($result);
         }
         return response()->setStatusCode(Response::HTTP_CREATED);
