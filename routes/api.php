@@ -13,16 +13,48 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::post('sign-in', 'PassportController@login');
+Route::post('sign-up', 'PassportController@register');
 
-Route::post('login', 'PassportController@login');
-Route::post('register', 'PassportController@register');
+Route::get('examinations', 'RedactionController@examinations');
+Route::get('subjects', 'RedactionController@subjects');
+Route::get('levels', 'RedactionController@levels');
+Route::get('tasks', 'RedactionController@tasks');
+
+Route::get('game/subjects-by-examination/{examinationId}', 'GameController@subjectsByExamination');
+Route::get('game/levels-by-subject/{subjectId}', 'GameController@levelsBySubject');
+
+Route::get('subjects-by-examination/{examinationId}', 'RedactionController@subjectsByExamination');
+Route::get('levels-by-subject/{subjectId}', 'RedactionController@levelsBySubject');
+Route::get('tasks-by-level/{levelId}', 'RedactionController@tasksByLevel');
+
+Route::get('levels-by-examination/{examinationId}', 'RedactionController@levelsByExamination');
+Route::get('tasks-by-subject/{subjectId}', 'RedactionController@tasksBySubject');
+Route::get('tasks-by-examination/{examinationId}', 'RedactionController@tasksByExamination');
 
 Route::middleware('auth:api')->group(function () {
 
     Route::get('user', 'PassportController@details');
 
-    Route::resource('products', 'ProductController');
+    Route::post('examinations', 'RedactionController@addExamination');
+    Route::post('subjects', 'RedactionController@addSubject');
+    Route::post('levels', 'RedactionController@addLevel');
+    Route::post('tasks', 'RedactionController@addTask');
+
+    Route::post('examinations/{id}', 'RedactionController@updateExamination');
+    Route::post('subjects/{id}', 'RedactionController@updateSubject');
+    Route::post('levels/{id}', 'RedactionController@updateLevel');
+    Route::post('tasks/{id}', 'RedactionController@updateTask');
+
+    Route::delete('examinations/{id}', 'RedactionController@deleteExamination');
+    Route::delete('subjects/{id}', 'RedactionController@deleteSubject');
+    Route::delete('levels/{id}', 'RedactionController@deleteLevel');
+    Route::delete('tasks/{id}', 'RedactionController@deleteTask');
+
+    Route::post('statistic/results', 'StatisticController@addResults');
+    Route::get('statistic/users', 'StatisticController@getUsersList');
+    Route::get('statistic/user/games/{userId}', 'StatisticController@getUserGames');
+    Route::get('statistic/game/results/{timestamp}', 'StatisticController@getGameResults');
+    Route::get('statistic/user/period/{userId}', 'StatisticController@getLastPeriodStatistic');
 });
+
