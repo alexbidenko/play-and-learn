@@ -29,6 +29,6 @@ class StatisticController extends Controller
     }
 
     function getUserResults($userId) {
-        return Result::whereUserId($userId)->groupBy('timestamp')->get();
+        return Result::with('task')->where('user_id', $userId)->groupBy('timestamp')->get();
     }
 }
