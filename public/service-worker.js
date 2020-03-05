@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.d7fb0a67819e4cde0776732a264e38a3.js"
+  "/precache-manifest.5e16897391bd30a8cf235557f541a6e8.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "play-and-learn"});
