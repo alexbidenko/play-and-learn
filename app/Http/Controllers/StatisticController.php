@@ -38,6 +38,7 @@ class StatisticController extends Controller
     }
 
     function getLastPeriodStatistic($userId) {
-        return Result::query()->where('timestamp', '>', (time() - 60 * 60 * 24 * 30) * 1000)->get();
+        return Result::query()
+            ->where('timestamp', '>', (time() - 60 * 60 * 24 * 30) * 1000)->get()->groupBy('timestamp');
     }
 }
