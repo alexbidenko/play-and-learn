@@ -55,5 +55,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('statistic/users', 'StatisticController@getUsersList');
     Route::get('statistic/user/games/{userId}', 'StatisticController@getUserGames');
     Route::get('statistic/game/results/{timestamp}', 'StatisticController@getGameResults');
+    Route::get('statistic/user/period/{userId}', 'StatisticController@getLastPeriodStatistic');
 });
 

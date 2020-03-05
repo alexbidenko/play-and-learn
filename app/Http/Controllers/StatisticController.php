@@ -36,4 +36,8 @@ class StatisticController extends Controller
     function getGameResults($timestamp) {
         return Result::with('task')->where('timestamp', $timestamp)->get();
     }
+
+    function getLastPeriodStatistic($userId) {
+        return Result::query()->where('timestamp', '>', (time() - 60 * 60 * 24 * 30) * 1000)->get();
+    }
 }
