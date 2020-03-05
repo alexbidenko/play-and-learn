@@ -28,7 +28,11 @@ class StatisticController extends Controller
         return User::all();
     }
 
-    function getUserResults($userId) {
-        return Result::with('task')->where('user_id', $userId)->get()->groupBy('timestamp');
+    function getUserGames($userId) {
+        return Result::query()->where('user_id', $userId)->groupBy('timestamp')->get(['id', 'timestamp']);
+    }
+
+    function getGameResults($timestamp) {
+        return Result::with('task')->where('timestamp', $timestamp)->get();
     }
 }

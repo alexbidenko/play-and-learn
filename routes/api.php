@@ -53,6 +53,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('statistic/results', 'StatisticController@addResults');
     Route::get('statistic/users', 'StatisticController@getUsersList');
-    Route::get('statistic/user/results/{userId}', 'StatisticController@getUserResults');
+    Route::get('statistic/user/games/{userId}', 'StatisticController@getUserGames');
+    Route::get('statistic/game/results/{timestamp}', 'StatisticController@getGameResults');
 });
 
