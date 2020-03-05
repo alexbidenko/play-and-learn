@@ -27,4 +27,8 @@ class StatisticController extends Controller
     function getUsersList() {
         return User::all();
     }
+
+    function getUserResults($userId) {
+        return Result::whereUserId($userId)->groupBy('timestamp')->get();
+    }
 }
