@@ -15,7 +15,7 @@ class StatisticController extends Controller
             '*.success' => ['required', 'string'],
             '*.time' => ['required', 'numeric'],
             '*.timestamp' => ['required', 'numeric'],
-            '*.answer' => ['required', 'string'],
+            '*.answer' => ['string'],
         ]);
         $requestBody = $request->all();
         foreach ($requestBody as $result) {
